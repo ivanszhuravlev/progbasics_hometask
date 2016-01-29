@@ -1,13 +1,3 @@
-<!doctype html>
-<html lang="en-US">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Links</title>
-  <link rel="stylesheet" type="text/css" href="../styles/request.css">
-</head>
-
-<body>
-
 <?
 function format_url($url) {
     
@@ -83,14 +73,12 @@ function search_anchors($dom_object, $url, $pages_count) {
     return $suitable_links;
 }
 
-$url = $_POST['field'];
+$url = $_POST['url_adress'];
 
 
 if (isset($url)){
 
 	$url = format_url($url);
-    
-    echo $url;
     
     /*
     ** Подключаем библиотеку Simple HTML DOM,
@@ -107,16 +95,16 @@ if (isset($url)){
     
     $suitable_links = search_anchors($html, $url, $pages_count);
     
-    var_dump($suitable_links);
+    $suitable_links = json_encode($suitable_links);
     
+    echo $suitable_links;
     
-    
-    
-    
+    exit;
     
 }
 else {
 	echo "Ошибка! Введите URL.";
+    
+    exit;
 }
-
 ?>

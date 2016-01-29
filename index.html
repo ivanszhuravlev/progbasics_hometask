@@ -3,18 +3,49 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Homepage | Hometask</title>
-  <!--<link rel="shortcut icon" href="favicon.ico">
-  <link rel="icon" href="favicon.ico">-->
   <link rel="stylesheet" type="text/css" href="styles/index.css">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 </head>
 
 <body>
 
-<form action="php/request.php" method="POST">
+<form action="" method="POST" id="form">
 	<input type="text" autofocus name="field">
-	<input type="submit" value="Найти статьи" />
+	<input type="submit" id="submit" value="Найти статьи" />
 </form>
+    
+<div class="output" id="output"></div>
+    
+<script>
+    $('#form').submit(function( event ){
+        
+        // make button look disabled.
+        $("#submit").addClass('disabled');
+        
+        // get adress from field
+        var query = $("#form").find( "input[name='field']" ).val();
+        
+        // Change default submit-event to our.
+        event.preventDefault();
+        
+        // send uri from field to php-script and get a response.
+        $.ajax({
+            type: "POST",
+            url: "php/request.php",
+            datatype: "json",
+            data: {url_adress: query},
+            success: onSuccess
+        });
+        
+        // if connection was successful, decode response, print links.
+        function onSuccess (links) {
+            var parsed_links = jQuery.parseJSON(links);
+            for (var i = 0; i < parsed_links.length; i++) {
+                $('#output').append( '<div><a href="' + parsed_links[i] + '">' + parsed_links[i] + '</a></div>' );
+            }
+        }
+    });
+</script>
 
 </body>
 </html>

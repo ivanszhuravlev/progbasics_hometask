@@ -1,0 +1,36 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700&subset=cyrillic-ext,latin-ext);
+
+* {
+	font-family: 'PT Sans', sans-serif;
+}
+
+input[type="submit"] {
+	padding:10px 15px 10px 15px;
+	display:block;
+	font-family: 'PT Sans', sans-serif;
+	border:0;
+	background:#;
+	position:relative !important;
+	cursor:pointer;
+	border-radius:50px 50px 50px 50px;
+	margin:0 auto;
+	top:10px;
+	color:#555555;
+	font-size: 14px;
+	background:#eeeeee;
+
+	transition:all ease .2s;
+}
+
+	input[type="submit"]:hover {
+		color:#ffffff;
+		background:#2ecc71;
+	}
+
+input[type="text"] {
+	width:50%;
+	margin-left:25%;
+	padding:7px 9px 9px 7px;
+	font-size: 16px;
+	margin-top: 15% !important;
+}
